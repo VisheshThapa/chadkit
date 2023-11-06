@@ -1,4 +1,7 @@
-
+<script lang="ts">
+    import {  user } from "$lib/pocketbase";
+    
+    </script>
 <div class="navbar bg-base-100">
   <div class="navbar-start">
 
@@ -11,36 +14,54 @@
         <li>
           <a>Parent</a>
           <ul class="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
+                        <li><a>Our Team</a></li>
+                        <li><a>For Developers</a></li>
+                        <li><a>For Investors</a></li>
           </ul>
         </li>
-        <li><a>Item 3</a></li>
-      </ul>
+        <li><a href="/">Product</a></li>
+        <li><a href="/">Why ChadKit</a></li>
+      <li><a href="/">Pricing</a></li>
+      <li><a href="/">Docs</a></li>
+       </ul>
     </div>
+<div class="avatar">
+  <div class="w-12 rounded-full">
+    <img src="/favicon.png" alt="profile photo"/>
+  </div>
+</div>
 
-    <a class="btn btn-ghost normal-case text-xl">ChadKit</a>
+    <a class="btn btn-ghost normal-case text-xl" href="/">ChadKit</a>
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
             <li tabindex="0">
                 <details>
-                    <summary>Product</summary>
+                    <summary>About</summary>
                     <ul class="p-2">
-                        <li><a>Submenu 1</a></li>
-                        <li><a>Submenu 2</a></li>
+                        <li><a>Our Team</a></li>
+                        <li><a>For Developers</a></li>
+                        <li><a>For Investors</a></li>
                     </ul>
                 </details>
             </li>
-      <li><a>Item 1</a></li>
-      <li><a>Item 3</a></li>
+        <li><a href="/">Product</a></li>
+        <li><a href="/">Why ChadKit</a></li>
+      <li><a href="/">Pricing</a></li>
+      <li><a href="/">Docs</a></li>
     </ul>
   </div>
   <div class="navbar-end">
-    <div class="avatar">
-  <div class="w-12 rounded-full">
-    <img src="/favicon.png" alt="profile photo"/>
-  </div>
-</div>
+        {#if $user}
+        <div class="flex">
+            <a href="/dashboard"class="btn btn-sm btn-primary mx-5">Dashboard</a>
+            <a href="/profile/{$user?.username}">{$user?.username}</a>
+       </div>
+        {:else}
+        <a href="/auth/login" class = "btn">
+
+         sign in 
+        </a>
+        {/if}
   </div>
 </div>

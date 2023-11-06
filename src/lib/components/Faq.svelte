@@ -1,4 +1,5 @@
-<div class = "md:mx-56 mx-5 my-5">
+<div class = "md:mx-56 mx-5 my-5 mt-20">
+
 <h2 class="mb-12 text-4xl font-bold text-center sm:text-5xl">Frequently Asked Questions</h2>
 
 <div>
@@ -8,7 +9,7 @@
 <div class="divider"></div> 
 <div>
 <h2 class="mb-5 text-2xl font-bold">Can I use a different stack?</h2>
-<p>ChadKit's basis is on Svelte everything else can be easily swapped out</p>
+<p>ChadKit's base is SvelteKit, everything else can be easily swapped out</p>
 </div>
 <div class="divider"></div> 
 <div>

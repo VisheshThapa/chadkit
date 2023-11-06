@@ -22,8 +22,6 @@
   <p class="text-center text-success">You are logged in</p>
   <p class="text-center text-success">Verified: {$user.verified}</p>
   <button class="btn btn-warning" on:click={() => signOut()}>Sign out</button>
-{:else if $user == null}
-    <p>Loading</p>
 {:else}
     <div class="mt-8 flex items-center justify-center">
    <div class="card w-full max-w-sm shadow-2xl bg-base-100 ">

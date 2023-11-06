@@ -4,17 +4,17 @@
         goto("https://buy.stripe.com/8wM00T7cNalNgne3cc");
     }
     function CheckoutPro(){
-        goto("https://buy.stripe.com/cN200TfJj3Xpgne289")
+        goto("https://buy.stripe.com/aEUeVNdBb51tc6Y146")
     }
 </script>
-<div class  = "md:flex lg:gap-20 md:gap-10 grid justify-center content-center  ">
+<div class  = "md:flex lg:gap-20 md:gap-10 grid justify-center content-center mt-5">
 <div class="card card-bordered w-96 bg-base-100 shadow-xl mt-5">
   <div class="card-body">
     <h2 class="card-title">Chad</h2>
   </div>
 
     <div class="card-normal flex flex-row justify-center">
-        <p class=" text-4xl  ">$150 </p>
+        <p class=" text-4xl  ">$120 </p>
         <p class="float-left">USD</p>
     </div>
         
@@ -47,7 +47,7 @@
   </div>
 
     <div class="card-normal flex flex-row justify-center">
-        <p class=" text-4xl  ">$273</p>
+        <p class=" text-4xl  ">$173</p>
         <p class="float-left">USD</p>
     </div>
         
