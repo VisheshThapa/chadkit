@@ -5,6 +5,6 @@ export default {
     },
     plugins: [require("daisyui")],
     daisyui: {
-        themes: ["lofi", "bumblebee"],
+        themes: ["lofi", "bumblebee", "halloween"],
     },
 };

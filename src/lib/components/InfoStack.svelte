@@ -1,4 +1,4 @@
-<h1 class="mb-8 mt-8 text-4xl font-bold text-center sm:text-5xl">Meet Your Stack</h1>
+<h1 class="mb-8 mt-24 text-4xl font-bold text-center sm:text-5xl">Meet Your Stack</h1>
 
 <div class="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
 

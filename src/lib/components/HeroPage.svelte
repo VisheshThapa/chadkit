@@ -1,4 +1,4 @@
-<div class="hero min-h-[90vh]">
+<div class="hero min-h-[75vh]">
   <div class="hero-content flex-col lg:flex-row-reverse">
     <img src="/obama.jpg" class="sm:max-w-lg  sm:object-contain rounded-lg shadow-2xl" />
     <div class = "sm:justify-content-center">
