@@ -10,7 +10,8 @@ import (
 	"github.com/labstack/echo/v5"
 	"github.com/pocketbase/pocketbase/forms"
 	"github.com/pocketbase/pocketbase/models"
-	"github.com/stripe/stripe-go"
+	"github.com/stripe/stripe-go/v76"
+	"github.com/stripe/stripe-go/v76/checkout/session"
 )
 
 func StripePaymentHandler(c echo.Context) error {
@@ -20,6 +21,7 @@ func StripePaymentHandler(c echo.Context) error {
 	if err != nil {
 		return err
 	}
+
 	var event stripe.Event
 	err = json.Unmarshal(payload, &event)
 	if err != nil {
@@ -39,13 +41,35 @@ func StripePaymentHandler(c echo.Context) error {
 	//
 	switch event.Type {
 	case "checkout.session.completed":
-		var session stripe.CheckoutSession
-		err = json.Unmarshal(event.Data.Raw, &session)
+		var checkout_session stripe.CheckoutSession
+
+		err = json.Unmarshal(event.Data.Raw, &checkout_session)
 		if err != nil {
 			return err
 		}
-		fmt.Println("Checkout Success", session.ID)
-		CreatePaidUser()
+		params := &stripe.CheckoutSessionListLineItemsParams{
+			Session: stripe.String(checkout_session.ID),
+		}
+		result := session.ListLineItems(params)
+		var li string
+		for result.Next() {
+			li = result.LineItem().Description
+		}
+
+		CreatePaidUser(
+			checkout_session.CustomerDetails.Name,
+			checkout_session.CustomerDetails.Email,
+			checkout_session.PaymentIntent.ID,
+			li,
+		)
+	case "checkout.session.expired":
+		// checkout wasn't completed send email reminder
+	case "invoice.paid":
+		// do something
+	case "invoice.payment_failed":
+		// revoke access or email about updating payment method
+	case "customer.subscription.deleted":
+		// revoke access
 	default:
 		fmt.Fprintf(os.Stderr, "Unhandled event type: %s\n", event.Type)
 
@@ -54,22 +78,24 @@ func StripePaymentHandler(c echo.Context) error {
 	return c.JSON(http.StatusOK, event)
 }
 
-func CreatePaidUser() error {
-	collection, err := app.Dao().FindCollectionByNameOrId("users")
+func CreatePaidUser(name string, email string, paymentID string, membership string) error {
+	collection, err := app.Dao().FindCollectionByNameOrId("PaidUsers")
 	if err != nil {
+		fmt.Println("1st err", err)
 		return err
 	}
 	record := models.NewRecord(collection)
 	form := forms.NewRecordUpsert(app, record)
-
 	form.LoadData(map[string]any{
-		"username":   "hello",
-		"email":      "email@email",
-		"name":       "hello",
-		"membership": "basic",
+		"name":           name,
+		"email":          email,
+		"payment_intent": paymentID,
+		"membership":     membership,
 	})
 	if err := form.Submit(); err != nil {
+		fmt.Println("2st err", err)
 		return err
 	}
+	SendProduct(email, membership)
 	return err
 }

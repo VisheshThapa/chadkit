@@ -9,7 +9,7 @@ RUN apk add --no-cache \
     openssh
 # Copy your custom PocketBase and build
 RUN mkdir /pb
-COPY go.mod go.sum stripe.go main.go /pb
+COPY go.mod go.sum stripe.go main.go mail.go /pb
 WORKDIR /pb
 
 # Note: This will pull the latest version of pocketbase. If you are just doing 
