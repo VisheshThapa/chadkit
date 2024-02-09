@@ -81,7 +81,7 @@ func StripePaymentHandler(c echo.Context) error {
 func CreatePaidUser(name string, email string, paymentID string, membership string) error {
 	collection, err := app.Dao().FindCollectionByNameOrId("PaidUsers")
 	if err != nil {
-		fmt.Println("1st err", err)
+		fmt.Println("FindCollectionByNameOrID Error", err)
 		return err
 	}
 	record := models.NewRecord(collection)
@@ -93,9 +93,14 @@ func CreatePaidUser(name string, email string, paymentID string, membership stri
 		"membership":     membership,
 	})
 	if err := form.Submit(); err != nil {
-		fmt.Println("2st err", err)
+		fmt.Println("form.Submit() eror", err)
 		return err
 	}
-	SendProduct(email, membership)
+	err = SendProduct(name, email, membership)
+	if err != nil {
+		fmt.Println("Send Product", err)
+		return err
+	}
+
 	return err
 }

@@ -7,9 +7,12 @@ RUN apk add --no-cache \
     unzip \
     # this is needed only if you want to use scp to copy later your pb_data locally
     openssh
+#adding neovim;
+RUN ["apk", "add", "neovim"]
 # Copy your custom PocketBase and build
 RUN mkdir /pb
-COPY go.mod go.sum stripe.go main.go mail.go /pb
+COPY .. /pb
+
 WORKDIR /pb
 
 # Note: This will pull the latest version of pocketbase. If you are just doing 
