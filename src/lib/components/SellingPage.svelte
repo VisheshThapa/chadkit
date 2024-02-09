@@ -3,7 +3,7 @@
 <p class = "text-center">Own your startup's backend and frontend with an all in one self hostable dockerfile</p>
     
 <h1 class="mb-5 mt-5 text-4xl font-bold text-center sm:text-5xl">NEVER worry about Suprise Fees</h1>
-<p class = "text-center">Host ChadKit on a prepaid $5 VM or prepay $5 on Fly and never worry about higher fees</p>
+<p class = "text-center">Host ChadKit on a prepaid $5 VM or prepaid $5 on Fly and never worry about higher fees</p>
 </div>
 
 
