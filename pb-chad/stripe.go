@@ -15,8 +15,8 @@ import (
 )
 
 func StripePaymentHandler(c echo.Context) error {
-	stripe.Key = "sk_test_51O2PQzLUswntPTxShPesVmjlf9q4h8uapLcMu19tXVYR6r6YSV26keSfwQbw0Hbq7duN5Knct2i7PsdZskTYPPa300SmnABo4l"
-	request := c.Request()
+	stripe.Key = "STRIPEKEY"
+    request := c.Request()
 	payload, err := io.ReadAll(request.Body)
 	if err != nil {
 		return err

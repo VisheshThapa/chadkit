@@ -1,7 +1,7 @@
 import PocketBase from "pocketbase";
 import { writable } from "svelte/store";
-
-export const pb = new PocketBase("https://pbserver.fly.dev/");
+import { PB_ADDR } from "$env/static/private";
+export const pb = new PocketBase(PB_ADDR);
 
 function userStore() {
     let unsubscribe: () => void;
